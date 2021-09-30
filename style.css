@@ -31,7 +31,6 @@ body
 
 nav
 {
-    background-color: black;
     grid-area: nav;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
@@ -39,10 +38,11 @@ nav
 
 main
 {
+    background-color:rgba(0, 0, 0, 0.700);
     grid-area: Main;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
-    box-shadow: -3px -3px 10px gray;
+    box-shadow: -3px -3px 10px yellow;
 }
 .MainDiv
 {
@@ -52,7 +52,6 @@ main
 
 #Sidebar
 {
-    background-color: black;
     grid-area: Sidebar;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
@@ -60,12 +59,13 @@ main
 
 #Content1
 {
+    background-color:rgba(0, 0, 0, 0.700);
     display: flex;
     flex-direction: row;
     grid-area: Content1;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
-    box-shadow: 0px 0px 3px gray;
+    box-shadow: 0px 0px 3px yellow;
 }
 .MidContainer
 {
@@ -83,13 +83,14 @@ main
 
 #Content2
 {
+    background-color:rgba(0, 0, 0, 0.700);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     grid-area: Content2;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
-    box-shadow: 0px 5px 10px gray;
+    box-shadow: 0px 5px 10px yellow;
 }
 .DaylyFor
 {
@@ -108,11 +109,12 @@ em
 
 #Content3
 {
+    background-color:rgba(0, 0, 0, 0.700);
     grid-area: Content3;
     justify-content: center;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
-    box-shadow: 3px -3px 10px gray;
+    box-shadow: 3px -3px 10px yellow;
 }
 
 

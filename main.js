@@ -18,7 +18,7 @@ let iconBase = "http://openweathermap.org/img/wn/";
 fetch(file).then((response) => response.json()).then((data) =>
 {
     console.log(data);
-    
+    document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?Gävle')"
     //Main window--
     document.getElementById("Description").innerHTML = data.current.weather[0].main;
     document.getElementById("TempNow").innerHTML = data.current.temp +"°C";
