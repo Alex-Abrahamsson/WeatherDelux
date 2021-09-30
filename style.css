@@ -23,7 +23,7 @@ body
     "footer footer footer footer";
     grid-gap: .4rem;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 14px;
     color: white;
     text-align: center;
@@ -31,7 +31,6 @@ body
 
 nav
 {
-    border: 1px solid green;
     background-color: black;
     grid-area: nav;
     border-radius: var(--main-radius);
@@ -40,10 +39,10 @@ nav
 
 main
 {
-    border: 1px solid green;
     grid-area: Main;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
+    box-shadow: -3px -3px 10px gray;
 }
 .MainDiv
 {
@@ -53,7 +52,6 @@ main
 
 #Sidebar
 {
-    border: 1px solid green;
     background-color: black;
     grid-area: Sidebar;
     border-radius: var(--main-radius);
@@ -64,10 +62,10 @@ main
 {
     display: flex;
     flex-direction: row;
-    border: 1px solid green;
     grid-area: Content1;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
+    box-shadow: 0px 0px 3px gray;
 }
 .MidContainer
 {
@@ -88,10 +86,10 @@ main
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    border: 1px solid green;
     grid-area: Content2;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
+    box-shadow: 0px 5px 10px gray;
 }
 .DaylyFor
 {
@@ -99,27 +97,33 @@ main
     flex-direction: row;
     justify-content:space-evenly;
 }
+em
+{
+    padding-top:15px;
+}
+.test
+{
+    padding-top:15px;
+}
 
 #Content3
 {
-    border: 1px solid green;
     grid-area: Content3;
     justify-content: center;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
+    box-shadow: 3px -3px 10px gray;
 }
 
 
 footer
 {
-    border: 1px solid green;
     grid-area: footer;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
 }
 #RightSidebar
 {
-    border: 1px solid green;
     grid-area: RightSidebar;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
@@ -132,11 +136,13 @@ h2
 {
     font-size: 28px;
     margin: 15px 0 0 0;
+    font-weight: 100;
 }
 h1
 {
     font-size: 48px;
     margin: 15px 5px 15px 5px;
+    font-weight: 100;
 }
 
 @media only screen and (max-width: 550px)
@@ -144,14 +150,34 @@ h1
     .container
     {
         grid-template-columns: 1fr;
-        grid-template-rows: 0.4fr 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1fr;
+        grid-template-rows: 0.3fr 0.1fr 0.5fr 0.5fr 0.5fr 0.1fr 0.3fr;
         grid-template-areas:
         "nav"
         "Sidebar"
+        "Content3"
         "Main"
         "Content1"
         "Content2"
         "RightSidebar"
         "footer"
     }
+    Main
+    {
+        box-shadow: 0px 1px 5px red;
+    }
+    #Content1
+    {
+        box-shadow: 0px 1px 5px red;
+    }
+    #Content2
+    {
+        box-shadow: 0px 1px 5px red;
+    }
+    #Content3
+    {
+        box-shadow: 0px 1px 5px red;
+    }
+
+
+
 }
