@@ -111,6 +111,7 @@ em
 {
     background-color:rgba(0, 0, 0, 0.700);
     grid-area: Content3;
+    display: flex;
     justify-content: center;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
