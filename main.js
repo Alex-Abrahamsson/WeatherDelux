@@ -1,6 +1,6 @@
-let favPosiition = localStorage.getItem("FavLocation");
+let favPosiition = localStorage.getItem("FavLocation"); // Om det finns någon fav position sparad så sätts den direkt här
 
-if (favPosiition === "")
+if (favPosiition === "")// Finns det ingen fav position så sätts gävle som standard position
 {
   favPosiition = "Gävle";
 }
@@ -12,18 +12,18 @@ let weatherData =
   apiKey2: "941bac0f44203ce92ef6aa74c6455d8e",
   FetchWeather: function (city)
   {
-    document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?"+city+"')"
-    document.getElementById("locationName").innerHTML = city;
+    document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?"+city+"')" // Hämtar en bild som är baserad på Staden vi kollar väder i
+    document.getElementById("locationName").innerHTML = city; // Visar namnet på den stad vi kollar väder i
     fetch("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + this.apiKey2).then((respons) => respons.json()).then((data2) => this.getInfo(data2));
   },
-  getInfo(data2)
+  getInfo(data2) // Hämtar lat och Long ur första Api'n för att kunna få fram stad utan att använda google Api som kanske kostar pengar
   {
     latitude = "lat=" +data2.coord.lat+"&";
     longitude = "lon=" +data2.coord.lon+"&";
     queryUrl = "https://api.openweathermap.org/data/2.5/onecall?";
     apiOptions = "units=metric&exclude=minutely,alerts&";
     apiKey = "appid=d1cad98fb876e640aae203693cb1c2d3";
-    file = queryUrl +latitude +longitude +apiOptions+ apiKey;
+    file = queryUrl +latitude +longitude +apiOptions+ apiKey; // Här är Urlen till main Api'n där all väderinfo kommer ifrån
 
     fetch(file).then((response) => response.json()).then((data) =>
     {
@@ -34,14 +34,14 @@ let weatherData =
       document.getElementById("Windspeed").innerHTML = "Wind speed: " + data.current.wind_speed;
       document.getElementById("Humidity").innerHTML = "Humidity: " + data.current.humidity + " %";
       
-      // ================== Get time ====================================
+      // ================== Hämtar klockslag ====================================
       let timeNow = new Date().getHours();
       let time1 = timeNow + 1;
       let time2 = timeNow + 2; 
       let time3 = timeNow + 3;             
       let time4 = timeNow + 4;
       let time5 = timeNow + 5;
-      //To fix clock getting up to 24,25,26 and so on..........
+      //To fix clock getting up to 24,25,26 and so on..................
       switch (timeNow) 
       {
         case 19:
@@ -74,7 +74,7 @@ let weatherData =
       }
       //============================================================================================================
       let iconBase = "http://openweathermap.org/img/wn/";
-      // ================================================= Hourly weather ============================================
+      // ========================================= Väder timme för timme ============================================
       document.getElementById("TimeHour1").innerHTML = time1;
       document.getElementById("Hourly-icon1").src = iconBase + data.hourly[1].weather[0].icon + ".png";
       document.getElementById("TempHour1").innerHTML = data.hourly[1].temp + "°";
@@ -96,7 +96,7 @@ let weatherData =
       document.getElementById("TempHour5").innerHTML = data.hourly[5].temp + "°";
       //==============================================================================================================
   
-      // ========================== 5 Day forcast ====================================================================
+      // ========================== Väder 5 dagar framåt =============================================================
       document.getElementById("icon-day1").src = iconBase + data.daily[1].weather[0].icon + ".png";
       document.getElementById("forcast-mintemp-day1").innerHTML = "Min: " + Math.round(data.daily[1].temp.min) + "°";
       document.getElementById("forcast-maxtemp-day1").innerHTML = "Max: " + Math.round(data.daily[1].temp.max) + "°";
@@ -151,12 +151,14 @@ function Clear() //Rensar all input i sökfältet efter varje sökning!
 };
 // ==================================================================================================================================
 
-//========================================= Get location ===========================================================================
+//========================================= Sparar Favvo Platsen ====================================================================
 function SaveFavLocation()
 {
   favPosiition = document.getElementById("locationName").innerHTML;
   localStorage.setItem("FavLocation", favPosiition);
 }
+//===================================================================================================================================
+
 
 
 weatherData.FetchWeather(favPosiition);
