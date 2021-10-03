@@ -24,7 +24,7 @@ let weather =
       
       //Main window--
       document.getElementById("Description").innerHTML = data.current.weather[0].main;
-      document.getElementById("TempNow").innerHTML = data.current.temp +"°C";
+      document.getElementById("TempNow").innerHTML = Math.round(data.current.temp) +"°C";
       document.getElementById("Windspeed").innerHTML = "Wind speed: " + data.current.wind_speed;
       document.getElementById("Humidity").innerHTML = "Humidity: " + data.current.humidity + " %";
   
@@ -92,24 +92,24 @@ let weather =
   
       // ========================== 5 Day forcast ================================
       document.getElementById("icon-day1").src = iconBase + data.daily[1].weather[0].icon + ".png";
-      document.getElementById("forcast-mintemp-day1").innerHTML = "Min: " + data.daily[1].temp.min + "°";
-      document.getElementById("forcast-maxtemp-day1").innerHTML = "Max: " +  data.daily[1].temp.max + "°";
+      document.getElementById("forcast-mintemp-day1").innerHTML = "Min: " + Math.round(data.daily[1].temp.min) + "°";
+      document.getElementById("forcast-maxtemp-day1").innerHTML = "Max: " + Math.round(data.daily[1].temp.max) + "°";
   
       document.getElementById("icon-day2").src = iconBase + data.daily[2].weather[0].icon + ".png";
-      document.getElementById("forcast-mintemp-day2").innerHTML = "Min: " + data.daily[2].temp.min + "°";
-      document.getElementById("forcast-maxtemp-day2").innerHTML = "Max: " + data.daily[2].temp.max + "°";
+      document.getElementById("forcast-mintemp-day2").innerHTML = "Min: " + Math.round(data.daily[2].temp.min) + "°";
+      document.getElementById("forcast-maxtemp-day2").innerHTML = "Max: " + Math.round(data.daily[2].temp.max) + "°";
   
       document.getElementById("icon-day3").src = iconBase + data.daily[3].weather[0].icon + ".png";
-      document.getElementById("forcast-mintemp-day3").innerHTML = "Min: " +  data.daily[3].temp.min + "°";
-      document.getElementById("forcast-maxtemp-day3").innerHTML = "Max: " +  data.daily[3].temp.max + "°";
+      document.getElementById("forcast-mintemp-day3").innerHTML = "Min: " +  Math.round(data.daily[3].temp.min) + "°";
+      document.getElementById("forcast-maxtemp-day3").innerHTML = "Max: " +  Math.round(data.daily[3].temp.max) + "°";
       
       document.getElementById("icon-day4").src = iconBase + data.daily[4].weather[0].icon + ".png";
-      document.getElementById("forcast-mintemp-day4").innerHTML = "Min: " +  data.daily[4].temp.min + "°";
-      document.getElementById("forcast-maxtemp-day4").innerHTML = "Max: " +  data.daily[4].temp.max + "°";
+      document.getElementById("forcast-mintemp-day4").innerHTML = "Min: " +  Math.round(data.daily[4].temp.min) + "°";
+      document.getElementById("forcast-maxtemp-day4").innerHTML = "Max: " +  Math.round(data.daily[4].temp.max) + "°";
       
       document.getElementById("icon-day5").src = iconBase + data.daily[5].weather[0].icon + ".png";
-      document.getElementById("forcast-mintemp-day5").innerHTML = "Min: " +  data.daily[5].temp.min + "°";
-      document.getElementById("forcast-maxtemp-day5").innerHTML = "Max: " +  data.daily[5].temp.max + "°";
+      document.getElementById("forcast-mintemp-day5").innerHTML = "Min: " +  Math.round(data.daily[5].temp.min) + "°";
+      document.getElementById("forcast-maxtemp-day5").innerHTML = "Max: " +  Math.round(data.daily[5].temp.max) + "°";
     })
   },
   // Sök funktionen
