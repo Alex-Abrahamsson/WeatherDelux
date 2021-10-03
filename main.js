@@ -4,7 +4,7 @@ if (favPosiition === "")// Finns det ingen fav position så sätts gävle som st
 {
   favPosiition = "Gävle";
 }
-
+//Uppdattteee
 
 
 let weatherData = 
