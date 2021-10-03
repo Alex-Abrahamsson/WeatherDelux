@@ -122,6 +122,7 @@ em
     grid-area: Content3;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
     box-shadow: 3px -3px 10px yellow;
@@ -156,6 +157,35 @@ h1
     margin: 15px 5px 15px 5px;
     font-weight: 100;
 }
+#fav-button
+{
+    background-image: url(./Assets/no-favLocation.jpg);
+    background-size: cover;
+    height: 40px;
+    width: 40px;
+    float: left;
+}
+#location-button
+{
+    float: left;
+    background-image: url(./Assets/location.png);
+    background-size: cover;
+    height: 40px;
+    width: 40px;
+}
+#search_button
+{
+    background-image: url(./Assets/search.png);
+    background-size: cover;
+    height: 40px;
+    width: 40px;
+}
+#search_box
+{
+    width: 70%;
+    height: 30px;
+}
+
 
 @media only screen and (max-width: 550px)
 {

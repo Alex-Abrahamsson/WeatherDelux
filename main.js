@@ -1,7 +1,13 @@
+let favPosiition = localStorage.getItem("FavLocation");
 
-//let file2 = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + apiKey2;
+if (favPosiition === "")
+{
+  favPosiition = "Gävle";
+}
 
-let weather = 
+
+
+let weatherData = 
 {
   apiKey2: "941bac0f44203ce92ef6aa74c6455d8e",
   FetchWeather: function (city)
@@ -27,7 +33,7 @@ let weather =
       document.getElementById("TempNow").innerHTML = Math.round(data.current.temp) +"°C";
       document.getElementById("Windspeed").innerHTML = "Wind speed: " + data.current.wind_speed;
       document.getElementById("Humidity").innerHTML = "Humidity: " + data.current.humidity + " %";
-  
+      
       // ================== Get time ====================================
       let timeNow = new Date().getHours();
       let time1 = timeNow + 1;
@@ -66,9 +72,9 @@ let weather =
         default:
           break;
       }
-      //========================================================================
+      //============================================================================================================
       let iconBase = "http://openweathermap.org/img/wn/";
-      // ===================== Hourly weather ==================================
+      // ================================================= Hourly weather ============================================
       document.getElementById("TimeHour1").innerHTML = time1;
       document.getElementById("Hourly-icon1").src = iconBase + data.hourly[1].weather[0].icon + ".png";
       document.getElementById("TempHour1").innerHTML = data.hourly[1].temp + "°";
@@ -88,9 +94,9 @@ let weather =
       document.getElementById("TimeHour5").innerHTML = time5;
       document.getElementById("Hourly-icon5").src = iconBase + data.hourly[5].weather[0].icon + ".png";
       document.getElementById("TempHour5").innerHTML = data.hourly[5].temp + "°";
-      //==========================================================================
+      //==============================================================================================================
   
-      // ========================== 5 Day forcast ================================
+      // ========================== 5 Day forcast ====================================================================
       document.getElementById("icon-day1").src = iconBase + data.daily[1].weather[0].icon + ".png";
       document.getElementById("forcast-mintemp-day1").innerHTML = "Min: " + Math.round(data.daily[1].temp.min) + "°";
       document.getElementById("forcast-maxtemp-day1").innerHTML = "Max: " + Math.round(data.daily[1].temp.max) + "°";
@@ -110,48 +116,47 @@ let weather =
       document.getElementById("icon-day5").src = iconBase + data.daily[5].weather[0].icon + ".png";
       document.getElementById("forcast-mintemp-day5").innerHTML = "Min: " +  Math.round(data.daily[5].temp.min) + "°";
       document.getElementById("forcast-maxtemp-day5").innerHTML = "Max: " +  Math.round(data.daily[5].temp.max) + "°";
+      //===============================================================================================================
     })
   },
   // Sök funktionen
   Search: function ()
   {
-      this.FetchWeather(document.querySelector(".search_box").value);   // Hämtar värder ur <Input - text> med class="search-bar"
+      this.FetchWeather(document.getElementById("search_box").value);   // Hämtar värder ur <Input - text> med class="search-bar"
   }
 };
 
 
-
-
-
-
-//longGräsö = 60.418833
-//LatGräsö = 18.446917
-
-//LongGävle = 60.6749
-//latGävle = 17.1413
-document.querySelector(".search_button").addEventListener("click", function() 
+// =========================================================== Sök funktioner ======================================================
+//Kör search funktionen om man trycker på "Sök" knappen
+document.getElementById("search_button").addEventListener("click", function() 
 {
-    weather.Search();
+    weatherData.Search();
     Clear();
 });
 
-
-document.querySelector(".search_box").addEventListener("keyup", function (event) 
+//Se till att Search funktionen körs om man trycker Enter
+document.getElementById("search_box").addEventListener("keyup", function (event) 
 {
     if (event.key == "Enter")
     {
-        weather.Search();
+        weatherData.Search();
         Clear();
     }
 });
 
-function Clear()
+function Clear() //Rensar all input i sökfältet efter varje sökning!
 {
-    document.querySelector(".search_box").value = "";
+    document.getElementById("search_box").value = "";
 };
+// ==================================================================================================================================
+
+//========================================= Get location ===========================================================================
+function SaveFavLocation()
+{
+  favPosiition = document.getElementById("locationName").innerHTML;
+  localStorage.setItem("FavLocation", favPosiition);
+}
 
 
-
-weather.FetchWeather("Gävle");
-
-
+weatherData.FetchWeather(favPosiition);
