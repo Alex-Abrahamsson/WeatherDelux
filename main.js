@@ -21,6 +21,7 @@ let weatherData = {
   },
   getInfo(data2)            // Hämtar lat och Long ur första Api'n för att kunna få fram stad utan att använda google Api som kanske kostar pengar
   {
+    
     latitude = "lat=" + data2.coord.lat + "&";
     longitude = "lon=" + data2.coord.lon + "&";
     queryUrl = "https://api.openweathermap.org/data/2.5/onecall?";
@@ -99,6 +100,61 @@ let weatherData = {
         //==============================================================================================================
 
         // ========================== Väder 5 dagar framåt =============================================================
+        let weekday = new Date().getDay();
+        switch (weekday) 
+        {
+          case 1:
+            document.getElementById("day1").innerHTML = "Tuesday";
+            document.getElementById("day2").innerHTML = "Wednesday";
+            document.getElementById("day3").innerHTML = "Thursday";
+            document.getElementById("day4").innerHTML = "Friday";
+            document.getElementById("day5").innerHTML = "Saturday";
+            break;
+          case 2:
+            document.getElementById("day5").innerHTML = "Wednesday";
+            document.getElementById("day1").innerHTML = "Thursday";
+            document.getElementById("day3").innerHTML = "Friday";
+            document.getElementById("day2").innerHTML = "Saturday";
+            document.getElementById("day4").innerHTML = "Sunday";
+            break;
+          case 3:
+            document.getElementById("day5").innerHTML = "Thursday";
+            document.getElementById("day5").innerHTML = "Friday";
+            document.getElementById("day5").innerHTML = "Saturday";
+            document.getElementById("day5").innerHTML = "Sunday";
+            document.getElementById("day5").innerHTML = "Monday";
+            break;
+          case 4:
+            document.getElementById("day5").innerHTML = "Friday";
+            document.getElementById("day5").innerHTML = "Saturday";
+            document.getElementById("day5").innerHTML = "Sunday";
+            document.getElementById("day5").innerHTML = "Monday";
+            document.getElementById("day5").innerHTML = "Tuesday";
+            break;
+          case 5:
+            document.getElementById("day5").innerHTML = "Saturday";
+            document.getElementById("day5").innerHTML = "Sunday";
+            document.getElementById("day5").innerHTML = "Monday";
+            document.getElementById("day5").innerHTML = "Tuesday";
+            document.getElementById("day5").innerHTML = "Wednesday";
+            break;
+          case 6:
+            document.getElementById("day5").innerHTML = "Sunday";
+            document.getElementById("day5").innerHTML = "Monday";
+            document.getElementById("day5").innerHTML = "Tuesday";
+            document.getElementById("day5").innerHTML = "Wednesday";
+            document.getElementById("day5").innerHTML = "Thursday";
+            break;
+          case 7:
+            document.getElementById("day5").innerHTML = "Monday";
+            document.getElementById("day5").innerHTML = "Tuesday";
+            document.getElementById("day5").innerHTML = "Wednesday";
+            document.getElementById("day5").innerHTML = "Thursday";
+            document.getElementById("day5").innerHTML = "Friday";
+            break;
+          default:
+            break;
+        }
         document.getElementById("icon-day1").src = iconBase + data.daily[1].weather[0].icon + ".png";
         document.getElementById("forcast-mintemp-day1").innerHTML = "Min: " + Math.round(data.daily[1].temp.min) + "°";
         document.getElementById("forcast-maxtemp-day1").innerHTML = "Max: " + Math.round(data.daily[1].temp.max) + "°";
@@ -158,7 +214,27 @@ function SaveFavLocation()
 {
   favPosiition = document.getElementById("locationName").innerHTML;
   localStorage.setItem("FavLocation", favPosiition);
+  alert("Du har sparat en Favorit plats!");
 }
 //===================================================================================================================================
+// =============================== Visa klocka som uppdaterar sig ==================================================================
+var timeJustNow = document.getElementById("timeNow");
+
+function time() 
+{
+  var date = new Date();
+  var min = date.getMinutes();
+  var hour = date.getHours();
+  timeJustNow.textContent =
+    ("0" + hour).substr(-2) +
+    ":" +
+    ("0" + min).substr(-2);
+}
+setInterval(time, 1000);
+
+// Visa dagens datum
+let todaysDate = new Date().toLocaleDateString()
+document.getElementById("dateNow").innerHTML = todaysDate;
+// =================================================================================================================================
 
 weatherData.FetchWeather(favPosiition);

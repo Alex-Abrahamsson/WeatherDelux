@@ -23,10 +23,16 @@
             </div>
         </main>
         <div id="Content3">
+            <div>
+                <h1 id="timeNow">20:00</h1>
+            </div>
             <div style="display: flex; justify-content:center; align-items: center;">
                 <button class="rounded-circle" id="fav-button" onclick="SaveFavLocation()"></button>
-                <input class="rounded" type="text" name="" id="search_box">
+                <input style="text-align: center; font-size: larger;" class="rounded" type="text" name="" id="search_box" placeholder="Search for city...">
                 <button class="rounded-circle" id="search_button"></button>
+            </div>
+            <div>
+                <h2 id="dateNow"></h2>
             </div>
         </div>
         <div id="Sidebar"></div>
@@ -66,7 +72,7 @@
         </div>
         <div id="Content2">
             <div class="DaylyFor">
-                <em>Day 1</em>
+                <em id="day1">Day 1</em>
                 <img src="" alt="" id="icon-day1">
                 <div class="test">
                     <span id="forcast-mintemp-day1"></span>
@@ -76,7 +82,7 @@
             </div>
 
             <div class="DaylyFor">
-                <em>Day 2</em>
+                <em id="day2">Day 2</em>
                 <img src="" alt="" id="icon-day2">
                 <div class="test">
                     <span id="forcast-mintemp-day2"></span>
@@ -86,7 +92,7 @@
             </div>
 
             <div class="DaylyFor">
-                <em>Day 3</em>
+                <em id="day3">Day 3</em>
                 <img src="" alt="" id="icon-day3">
                 <div class="test">
                     <span id="forcast-mintemp-day3"></span>
@@ -96,7 +102,7 @@
             </div>
 
             <div class="DaylyFor">
-                <em>Day 4</em>
+                <em id="day4">Day 4</em>
                 <img src="" alt="" id="icon-day4">
                 <div class="test">
                     <span id="forcast-mintemp-day4"></span>
@@ -106,7 +112,7 @@
             </div>
 
             <div class="DaylyFor">
-                <em>Day 5</em>
+                <em id="day5">Day 5</em>
                 <img src="" alt="" id="icon-day5">
                 <div class="test">
                     <span id="forcast-mintemp-day5"></span>
