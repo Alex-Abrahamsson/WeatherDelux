@@ -1,9 +1,9 @@
 
-if (localStorage.length !== 0)  // Kollar om nånting är sparat i Localstorage, om det finns nått så hämtas den infon
+if (localStorage.length !== 0)                                      // Kollar om nånting är sparat i Localstorage, om det finns nått så hämtas den infon
 {
   var favPosiition = localStorage.getItem("FavLocation"); 
 }
-else // Finns det inget sparat i Localstorage så sätts Gävle som standard!
+else                                                               // Finns det inget sparat i Localstorage så sätts Gävle som standard!
 {
   var favPosiition = "Gävle";
 }
@@ -13,8 +13,8 @@ let weatherData = {
   apiKey2: "941bac0f44203ce92ef6aa74c6455d8e",
   FetchWeather: function (city) {
     document.body.style.backgroundImage =
-      "url('https://source.unsplash.com/1600x900/?" + city + "')"; // Hämtar en bild som är baserad på Staden vi kollar väder i
-    document.getElementById("locationName").innerHTML = city; // Visar namnet på den stad vi kollar väder i
+      "url('https://source.unsplash.com/1600x900/?" + city + "')";    // Hämtar en bild som är baserad på Staden vi kollar väder i
+    document.getElementById("locationName").innerHTML = city;         // Visar namnet på den stad vi kollar väder i
     fetch(
       "http://api.openweathermap.org/data/2.5/weather?q=" +
         city +
@@ -25,14 +25,14 @@ let weatherData = {
       .then((data2) => this.getInfo(data2));
   },
   getInfo(
-    data2 // Hämtar lat och Long ur första Api'n för att kunna få fram stad utan att använda google Api som kanske kostar pengar
+    data2                                                                  // Hämtar lat och Long ur första Api'n för att kunna få fram stad utan att använda google Api som kanske kostar pengar
   ) {
     latitude = "lat=" + data2.coord.lat + "&";
     longitude = "lon=" + data2.coord.lon + "&";
     queryUrl = "https://api.openweathermap.org/data/2.5/onecall?";
     apiOptions = "units=metric&exclude=minutely,alerts&";
     apiKey = "appid=d1cad98fb876e640aae203693cb1c2d3";
-    file = queryUrl + latitude + longitude + apiOptions + apiKey; // Här är Urlen till main Api'n där all väderinfo kommer ifrån
+    file = queryUrl + latitude + longitude + apiOptions + apiKey;         // Här är Urlen till main Api'n där all väderinfo kommer ifrån
 
     fetch(file)
       .then((response) => response.json())
