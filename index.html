@@ -27,6 +27,7 @@
                 <h1 id="timeNow">20:00</h1>
             </div>
             <div style="display: flex; justify-content:center; align-items: center;">
+                <button class="rounded-circle" id="clear-favorites" onclick="ClearFavorites()" style="font-size: small;">Clear</button>
                 <button class="rounded-circle" id="fav-button" onclick="SaveFavLocation()"></button>
                 <input style="text-align: center; font-size: larger;" class="rounded" type="text" name="" id="search_box" placeholder="Search for city...">
                 <button class="rounded-circle" id="search_button"></button>
@@ -122,7 +123,14 @@
             </div>
         </div>
         <div id="RightSidebar"></div>
-        <footer></footer>
+        <footer>
+            <div style="display: flex; justify-content: center; flex-direction: row;">
+                <p style="padding-right: 5px;">Your location: </p>
+                <p id="lat"></p>
+                <span class="Divider"> | </span>
+                <p id="long"></p>
+            </div>
+        </footer>
     </div>
 
     
@@ -130,5 +138,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="main.js"></script>
+
 </body>
 </html>

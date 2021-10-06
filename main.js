@@ -1,34 +1,44 @@
-
-if (localStorage.length !== 0)                                      // Kollar om nånting är sparat i Localstorage, om det finns nått så hämtas den infon
+var favPosiition  = "Gävle";
+if(localStorage.length > 0)
 {
-  var favPosiition = localStorage.getItem("FavLocation"); 
-}
-else                                                               // Finns det inget sparat i Localstorage så sätts Gävle som standard!
-{
-  var favPosiition = "Gävle";
+  
 }
 
+var searched = false;
 
 let weatherData = {
   apiKey2: "941bac0f44203ce92ef6aa74c6455d8e",
   FetchWeather: function (city) 
   {
+    favPosiition = city;
     document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?" + city + "')";    // Hämtar en bild som är baserad på Staden vi kollar väder i
-    document.getElementById("locationName").innerHTML = city;         // Visar namnet på den stad vi kollar väder i
+    document.getElementById("locationName").innerHTML = city;                                             // Visar namnet på den stad vi kollar väder i
     fetch("http://api.openweathermap.org/data/2.5/weather?q=" +city +"&units=metric&appid=" +this.apiKey2)
       .then((respons) => respons.json())
       .then((data2) => this.getInfo(data2));
   },
-  getInfo(data2)            // Hämtar lat och Long ur första Api'n för att kunna få fram stad utan att använda google Api som kanske kostar pengar
+  getInfo(data2)                                                                                          // Hämtar lat och Long ur första Api'n
   {
     
-    latitude = "lat=" + data2.coord.lat + "&";
-    longitude = "lon=" + data2.coord.lon + "&";
-    queryUrl = "https://api.openweathermap.org/data/2.5/onecall?";
-    apiOptions = "units=metric&exclude=minutely,alerts&";
-    apiKey = "appid=d1cad98fb876e640aae203693cb1c2d3";
-    file = queryUrl + latitude + longitude + apiOptions + apiKey;         // Här är Urlen till main Api'n där all väderinfo kommer ifrån
-
+    if(searched === true)
+    {
+      searchLatitude = "lat=" + data2.coord.lat + "&";
+      searchLongitude = "lon=" + data2.coord.lon + "&";
+      queryUrl = "https://api.openweathermap.org/data/2.5/onecall?";
+      apiOptions = "units=metric&exclude=minutely,alerts&";
+      apiKey = "appid=d1cad98fb876e640aae203693cb1c2d3";
+      file = queryUrl + searchLatitude + searchLongitude + apiOptions + apiKey;
+    }
+    else if(searched === false)
+    {
+      latitude = "lat=" + document.getElementById("lat").innerHTML + "&";
+      longitude = "lon=" + document.getElementById("long").innerHTML + "&";
+      document.getElementById("locationName").innerHTML = favPosiition;
+      queryUrl = "https://api.openweathermap.org/data/2.5/onecall?";
+      apiOptions = "units=metric&exclude=minutely,alerts&";
+      apiKey = "appid=d1cad98fb876e640aae203693cb1c2d3";
+      file = queryUrl + latitude + longitude + apiOptions + apiKey;
+    }
     fetch(file)
       .then((response) => response.json())
       .then((data) => {
@@ -111,45 +121,45 @@ let weatherData = {
             document.getElementById("day5").innerHTML = "Saturday";
             break;
           case 2:
-            document.getElementById("day5").innerHTML = "Wednesday";
-            document.getElementById("day1").innerHTML = "Thursday";
+            document.getElementById("day1").innerHTML = "Wednesday";
+            document.getElementById("day2").innerHTML = "Thursday";
             document.getElementById("day3").innerHTML = "Friday";
-            document.getElementById("day2").innerHTML = "Saturday";
-            document.getElementById("day4").innerHTML = "Sunday";
+            document.getElementById("day4").innerHTML = "Saturday";
+            document.getElementById("day5").innerHTML = "Sunday";
             break;
           case 3:
-            document.getElementById("day5").innerHTML = "Thursday";
-            document.getElementById("day5").innerHTML = "Friday";
-            document.getElementById("day5").innerHTML = "Saturday";
-            document.getElementById("day5").innerHTML = "Sunday";
+            document.getElementById("day1").innerHTML = "Thursday";
+            document.getElementById("day2").innerHTML = "Friday";
+            document.getElementById("day3").innerHTML = "Saturday";
+            document.getElementById("day4").innerHTML = "Sunday";
             document.getElementById("day5").innerHTML = "Monday";
             break;
           case 4:
-            document.getElementById("day5").innerHTML = "Friday";
-            document.getElementById("day5").innerHTML = "Saturday";
-            document.getElementById("day5").innerHTML = "Sunday";
-            document.getElementById("day5").innerHTML = "Monday";
+            document.getElementById("day1").innerHTML = "Friday";
+            document.getElementById("day2").innerHTML = "Saturday";
+            document.getElementById("day3").innerHTML = "Sunday";
+            document.getElementById("day4").innerHTML = "Monday";
             document.getElementById("day5").innerHTML = "Tuesday";
             break;
           case 5:
-            document.getElementById("day5").innerHTML = "Saturday";
-            document.getElementById("day5").innerHTML = "Sunday";
-            document.getElementById("day5").innerHTML = "Monday";
-            document.getElementById("day5").innerHTML = "Tuesday";
+            document.getElementById("day1").innerHTML = "Saturday";
+            document.getElementById("day2").innerHTML = "Sunday";
+            document.getElementById("day3").innerHTML = "Monday";
+            document.getElementById("day4").innerHTML = "Tuesday";
             document.getElementById("day5").innerHTML = "Wednesday";
             break;
           case 6:
-            document.getElementById("day5").innerHTML = "Sunday";
-            document.getElementById("day5").innerHTML = "Monday";
-            document.getElementById("day5").innerHTML = "Tuesday";
-            document.getElementById("day5").innerHTML = "Wednesday";
+            document.getElementById("day1").innerHTML = "Sunday";
+            document.getElementById("day2").innerHTML = "Monday";
+            document.getElementById("day3").innerHTML = "Tuesday";
+            document.getElementById("day4").innerHTML = "Wednesday";
             document.getElementById("day5").innerHTML = "Thursday";
             break;
           case 7:
-            document.getElementById("day5").innerHTML = "Monday";
-            document.getElementById("day5").innerHTML = "Tuesday";
-            document.getElementById("day5").innerHTML = "Wednesday";
-            document.getElementById("day5").innerHTML = "Thursday";
+            document.getElementById("day1").innerHTML = "Monday";
+            document.getElementById("day2").innerHTML = "Tuesday";
+            document.getElementById("day3").innerHTML = "Wednesday";
+            document.getElementById("day4").innerHTML = "Thursday";
             document.getElementById("day5").innerHTML = "Friday";
             break;
           default:
@@ -181,6 +191,7 @@ let weatherData = {
   Search: function () 
   {
     this.FetchWeather(document.getElementById("search_box").value); // Hämtar värder ur <Input - text> med class="search-bar"
+    searched = true;
   },
 };
 
@@ -212,12 +223,27 @@ function Clear()
 //========================================= Sparar Favvo Platsen ====================================================================
 function SaveFavLocation() 
 {
-  favPosiition = document.getElementById("locationName").innerHTML;
-  localStorage.setItem("FavLocation", favPosiition);
-  alert("Du har sparat en Favorit plats!");
+
+  if (localStorage.length > 0 && localStorage.getItem("FavLocation") !== "Your Location") 
+  {
+    searched = true;
+    weatherData.FetchWeather(localStorage.getItem("FavLocation"));
+  } else 
+  {
+    favPosiition = document.getElementById("locationName").innerHTML;
+    localStorage.setItem("FavLocation", favPosiition);
+    alert("Du har sparat en Favorit plats!");
+  }
+
+}
+function ClearFavorites() 
+{
+  localStorage.clear();
 }
 //===================================================================================================================================
+
 // =============================== Visa klocka som uppdaterar sig ==================================================================
+//#region 
 var timeJustNow = document.getElementById("timeNow");
 
 function time() 
@@ -235,6 +261,29 @@ setInterval(time, 1000);
 // Visa dagens datum
 let todaysDate = new Date().toLocaleDateString()
 document.getElementById("dateNow").innerHTML = todaysDate;
-// =================================================================================================================================
+//#endregion
+
+
+//==================================== Hämtar din position =========================================================================
+var lat = document.getElementById("lat");
+var long = document.getElementById("long");
+
+function getLocation() 
+{
+  if (navigator.geolocation) 
+  {
+    navigator.geolocation.getCurrentPosition(getPosition);
+  }
+
+}
+function getPosition(position) 
+{
+  lat.innerHTML = position.coords.latitude;
+  long.innerHTML = position.coords.longitude;
+}
+
+
+
+getLocation();
 
 weatherData.FetchWeather(favPosiition);
