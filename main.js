@@ -1,8 +1,11 @@
-var favPosiition  = "Gävle";
-if(localStorage.length > 0)
+var startPosition  = "Gävle";
+var favvo = [];
+for (let index = 0; index < localStorage.length; index++)
 {
-  
+  favvo[index].push(localStorage.getItem("FavLocation", index));
 }
+
+
 
 var searched = false;
 
@@ -10,7 +13,7 @@ let weatherData = {
   apiKey2: "941bac0f44203ce92ef6aa74c6455d8e",
   FetchWeather: function (city) 
   {
-    favPosiition = city;
+    startPosition = city;
     document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?" + city + "')";    // Hämtar en bild som är baserad på Staden vi kollar väder i
     document.getElementById("locationName").innerHTML = city;                                             // Visar namnet på den stad vi kollar väder i
     fetch("http://api.openweathermap.org/data/2.5/weather?q=" +city +"&units=metric&appid=" +this.apiKey2)
@@ -33,7 +36,7 @@ let weatherData = {
     {
       latitude = "lat=" + document.getElementById("lat").innerHTML + "&";
       longitude = "lon=" + document.getElementById("long").innerHTML + "&";
-      document.getElementById("locationName").innerHTML = favPosiition;
+      document.getElementById("locationName").innerHTML = startPosition;
       queryUrl = "https://api.openweathermap.org/data/2.5/onecall?";
       apiOptions = "units=metric&exclude=minutely,alerts&";
       apiKey = "appid=d1cad98fb876e640aae203693cb1c2d3";
@@ -223,19 +226,48 @@ function Clear()
 //========================================= Sparar Favvo Platsen ====================================================================
 function SaveFavLocation() 
 {
-
-  if (localStorage.length > 0 && localStorage.getItem("FavLocation") !== "Your Location") 
-  {
-    searched = true;
-    weatherData.FetchWeather(localStorage.getItem("FavLocation"));
-  } else 
-  {
-    favPosiition = document.getElementById("locationName").innerHTML;
-    localStorage.setItem("FavLocation", favPosiition);
-    alert("Du har sparat en Favorit plats!");
-  }
-
+  startPosition = document.getElementById("locationName").innerHTML;
+  localStorage.setItem("FavLocation",favvo.push(document.getElementById("locationName").innerHTML));
+  document.getElementById("fav1").innerHTML = favvo[0];
+  document.getElementById("fav2").innerHTML = favvo[1];
+  document.getElementById("fav3").innerHTML = favvo[2];
+  alert("Du har sparat en Favorit plats!");
+  console.log(favvo);
 }
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) 
+  {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+function GoTo1()
+{
+  weatherData.FetchWeather(document.getElementById("fav1").innerHTML);
+}
+function GoTo2() 
+{
+  weatherData.FetchWeather(document.getElementById("fav2").innerHTML);
+}
+function GoTo3() 
+{
+  weatherData.FetchWeather(document.getElementById("fav3").innerHTML);
+}
+
+
+
 function ClearFavorites() 
 {
   localStorage.clear();
@@ -287,4 +319,4 @@ function getPosition(position)
 
 getLocation();
 
-weatherData.FetchWeather(favPosiition);
+weatherData.FetchWeather(startPosition);

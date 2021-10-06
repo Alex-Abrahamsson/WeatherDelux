@@ -28,6 +28,14 @@
             </div>
             <div style="display: flex; justify-content:center; align-items: center;">
                 <button class="rounded-circle" id="clear-favorites" onclick="ClearFavorites()" style="font-size: small;">Clear</button>
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">Favorites</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <p onclick="GoTo1()" id="fav1">1:</p>
+                        <p onclick="GoTo2()" id="fav2">2:</p>
+                        <p onclick="GoTo3()" id="fav3">3:</p>
+                    </div>
+                </div>
                 <button class="rounded-circle" id="fav-button" onclick="SaveFavLocation()"></button>
                 <input style="text-align: center; font-size: larger;" class="rounded" type="text" name="" id="search_box" placeholder="Search for city...">
                 <button class="rounded-circle" id="search_button"></button>
