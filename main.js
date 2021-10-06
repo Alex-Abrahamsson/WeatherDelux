@@ -239,6 +239,7 @@ function SaveFavLocation()
 function ClearFavorites() 
 {
   localStorage.clear();
+  alert("Du har raderat din sparade Favoritplats!");
 }
 //===================================================================================================================================
 
