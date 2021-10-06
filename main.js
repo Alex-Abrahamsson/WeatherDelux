@@ -1,9 +1,5 @@
 var startPosition  = "Gävle";
-var favvo = [];
-for (let index = 0; index < localStorage.length; index++)
-{
-  favvo[index].push(localStorage.getItem("FavLocation", index));
-}
+let favvo = [];
 
 
 
@@ -13,6 +9,7 @@ let weatherData = {
   apiKey2: "941bac0f44203ce92ef6aa74c6455d8e",
   FetchWeather: function (city) 
   {
+    
     startPosition = city;
     document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?" + city + "')";    // Hämtar en bild som är baserad på Staden vi kollar väder i
     document.getElementById("locationName").innerHTML = city;                                             // Visar namnet på den stad vi kollar väder i
@@ -224,54 +221,41 @@ function Clear()
 // ==================================================================================================================================
 
 //========================================= Sparar Favvo Platsen ====================================================================
-function SaveFavLocation() 
+
+function AddFavorite()
 {
-  startPosition = document.getElementById("locationName").innerHTML;
-  localStorage.setItem("FavLocation",favvo.push(document.getElementById("locationName").innerHTML));
-  document.getElementById("fav1").innerHTML = favvo[0];
-  document.getElementById("fav2").innerHTML = favvo[1];
-  document.getElementById("fav3").innerHTML = favvo[2];
-  alert("Du har sparat en Favorit plats!");
-  console.log(favvo);
-}
-
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) 
+  if(localStorage.length == 0)
   {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
+    favvo = ["" + document.getElementById("locationName").innerHTML];
+    localStorage.setItem("Favorites", JSON.stringify(favvo));
+  }else
+  {
+    // Store the location in the favvo array
+    favvo.push(document.getElementById("locationName").innerHTML);
+    // Store in localstorage after JSON stringifying it
+    localStorage.setItem("Favorites", JSON.stringify(favvo));
   }
+  var favItem = document.createElement("Div");
+  var FavlistaLängd = favvo.length - 1;
+  favItem.setAttribute("id", FavlistaLängd);
+  favItem.setAttribute("onclick", "FetchFavWeather(this.id)");
+  favItem.innerHTML = document.getElementById("locationName").innerHTML;
+  document.querySelector(".dropdown-content").appendChild(favItem);
 }
 
-function GoTo1()
-{
-  weatherData.FetchWeather(document.getElementById("fav1").innerHTML);
-}
-function GoTo2() 
-{
-  weatherData.FetchWeather(document.getElementById("fav2").innerHTML);
-}
-function GoTo3() 
-{
-  weatherData.FetchWeather(document.getElementById("fav3").innerHTML);
-}
 
+function FetchFavWeather(clicked_id)
+{
+  alert(favvo[clicked_id]);
+  weatherData.FetchWeather(favvo[clicked_id]);
+};
 
 
 function ClearFavorites() 
 {
   localStorage.clear();
   alert("Du har raderat din sparade Favoritplats!");
+  location.reload();
 }
 //===================================================================================================================================
 
@@ -317,6 +301,25 @@ function getPosition(position)
 
 
 
+
+// Retrieve the array from local storage
+favvo = localStorage.getItem("Favorites");
+// Parse it to something usable in js
+favvo = JSON.parse(favvo);
+
+for (let index = 0; index < favvo.length; index++) 
+{
+  var favItem = document.createElement("Div");
+  favItem.setAttribute("class", "favDiv");
+  favItem.setAttribute("id", index);
+  favItem.setAttribute("onclick", "FetchFavWeather(this.id)");
+  favItem.innerHTML = favvo[index];
+  document.querySelector(".dropdown-content").appendChild(favItem);
+}
+
 getLocation();
 
 weatherData.FetchWeather(startPosition);
+
+
+

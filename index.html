@@ -23,25 +23,21 @@
             </div>
         </main>
         <div id="Content3">
-            <div>
-                <h1 id="timeNow">20:00</h1>
-            </div>
-            <div style="display: flex; justify-content:center; align-items: center;">
-                <button class="rounded-circle" id="clear-favorites" onclick="ClearFavorites()" style="font-size: small;">Clear</button>
+
+            <div style="display: flex; justify-content:space-evenly; align-items: center; margin: 0px 10px 0px 10px;">
                 <div class="dropdown">
-                    <button onclick="myFunction()" class="dropbtn">Favorites</button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <p onclick="GoTo1()" id="fav1">1:</p>
-                        <p onclick="GoTo2()" id="fav2">2:</p>
-                        <p onclick="GoTo3()" id="fav3">3:</p>
+                    <button class="dropbtn">Favorites</button>
+                    <div class="dropdown-content">
+                        <div style="display: flex; justify-content: center; flex-direction: row;">
+                            <button id="addToFav_Btn" onclick="AddFavorite()" style="width:100%;">-- Add Favorite --</button>
+                        </div>
                     </div>
                 </div>
-                <button class="rounded-circle" id="fav-button" onclick="SaveFavLocation()"></button>
                 <input style="text-align: center; font-size: larger;" class="rounded" type="text" name="" id="search_box" placeholder="Search for city...">
-                <button class="rounded-circle" id="search_button"></button>
+                <button id="search_button">Search</button>
             </div>
-            <div>
-                <h2 id="dateNow"></h2>
+            <div style="display: flex; justify-content: left; margin-left: 15px;">
+                <button class="dropbtnDown" id="clear-favorites" onclick="ClearFavorites()">Clear</button>
             </div>
         </div>
         <div id="Sidebar"></div>
@@ -132,11 +128,18 @@
         </div>
         <div id="RightSidebar"></div>
         <footer>
+            <div style="display: flex; justify-content: right;">
+                <h2 id="timeNow">20:00</h2>
+            </div>
             <div style="display: flex; justify-content: center; flex-direction: row;">
                 <p style="padding-right: 5px;">Your location: </p>
                 <p id="lat"></p>
                 <span class="Divider"> | </span>
                 <p id="long"></p>
+            </div>
+
+            <div style="display: flex; justify-content: right;">
+                <h3 id="dateNow"></h3>
             </div>
         </footer>
     </div>
