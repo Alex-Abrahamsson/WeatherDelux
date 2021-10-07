@@ -235,18 +235,18 @@ function AddFavorite()
     // Store in localstorage after JSON stringifying it
     localStorage.setItem("Favorites", JSON.stringify(favvo));
   }
-  var favItem = document.createElement("Div");
-  var FavlistaLängd = favvo.length - 1;
-  favItem.setAttribute("id", FavlistaLängd);
-  favItem.setAttribute("onclick", "FetchFavWeather(this.id)");
-  favItem.innerHTML = document.getElementById("locationName").innerHTML;
-  document.querySelector(".dropdown-content").appendChild(favItem);
+  var favItem = document.createElement("Div");                                  //Skapar en Div 
+  var FavlistaLängd = favvo.length - 1;                                         //Kollar hur många Favoriter som är sparade
+  favItem.setAttribute("id", FavlistaLängd);                                    //Ger divven ett id         
+  favItem.setAttribute("onclick", "FetchFavWeather(this.id)");                  //Ger divven en "Onclick function"
+  favItem.innerHTML = document.getElementById("locationName").innerHTML;        //Sätter in text i divven  
+  document.querySelector(".dropdown-content").appendChild(favItem);             //Appendar divven till dropdown listan 
 }
 
 
 function FetchFavWeather(clicked_id)
 {
-  weatherData.FetchWeather(favvo[clicked_id]);
+  weatherData.FetchWeather(favvo[clicked_id]);                                   //När man clickar på en favorit så körs Fetchweader med den staden
 };
 
 
