@@ -1,4 +1,4 @@
-var startPosition  = "Gävle";
+
 let favvo = [];
 
 
@@ -317,7 +317,7 @@ for (let index = 0; index < favvo.length; index++)
 }
 
 getLocation();
-
+var startPosition = "Gävle";
 weatherData.FetchWeather(startPosition);
 
 
