@@ -246,7 +246,6 @@ function AddFavorite()
 
 function FetchFavWeather(clicked_id)
 {
-  alert(favvo[clicked_id]);
   weatherData.FetchWeather(favvo[clicked_id]);
 };
 
@@ -254,7 +253,7 @@ function FetchFavWeather(clicked_id)
 function ClearFavorites() 
 {
   localStorage.clear();
-  alert("Du har raderat din sparade Favoritplats!");
+  alert("Du har raderat dina sparade Favoritplats!");
   location.reload();
 }
 //===================================================================================================================================
