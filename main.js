@@ -305,7 +305,7 @@ function getPosition(position)
 favvo = localStorage.getItem("Favorites");
 // Parse it to something usable in js
 favvo = JSON.parse(favvo);
-
+/*
 for (let index = 0; index < favvo.length; index++) 
 {
   var favItem = document.createElement("Div");
@@ -314,11 +314,12 @@ for (let index = 0; index < favvo.length; index++)
   favItem.setAttribute("onclick", "FetchFavWeather(this.id)");
   favItem.innerHTML = favvo[index];
   document.querySelector(".dropdown-content").appendChild(favItem);
-}
+}*/
+
 
 getLocation();
-var startPosition = "Gävle";
-weatherData.FetchWeather(startPosition);
+//var startPosition = "Dubai";
+weatherData.FetchWeather("Gävle");
 
 
 
